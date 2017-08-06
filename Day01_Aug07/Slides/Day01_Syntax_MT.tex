@@ -1,0 +1,566 @@
+\documentclass[xcolor=x11names,compress]{beamer}
+
+%% General document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\PassOptionsToPackage{table}{xcolor}
+\usepackage{graphicx}
+\usepackage{multirow,multicol}
+\usepackage{amsmath}
+\usepackage{mathpazo}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{array,colortbl,booktabs}
+\usepackage{soul}
+\usepackage{enumerate}
+\usepackage{url}
+\usepackage{verbatimbox}
+\usepackage{fancyvrb}
+\usepackage{dirtree}
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes.misc}
+\usetikzlibrary{decorations.fractals}
+\usetikzlibrary{calc}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usetikzlibrary{arrows}
+\usetikzlibrary{fit}
+%\usepackage{color, colortbl}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\slideentry}{\advance\beamer@xpos by1\relax}{}{}{}
+\def\beamer@subsectionentry#1#2#3#4#5{\advance\beamer@xpos by1\relax}%
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% Beamer Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\useoutertheme[subsection=false, shadow]{miniframes}
+\useinnertheme{circles}
+\usefonttheme{structurebold}
+\usepackage{palatino}
+\usepackage{tcolorbox}
+\usepackage{lipsum}
+
+%% COLOR DEFINITION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{mygold}{RGB}{236,208,120}
+\definecolor{brick}{RGB}{217,91,67}
+\definecolor{myred}{RGB}{192,41,66}
+\definecolor{redwine}{RGB}{102,0,102}
+\definecolor{myaqua}{RGB}{83,119,122}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% OTHER EXTRA STUFF%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CHANGE COVER SLIDE %%
+\makeatletter
+    \newenvironment{coverframe}{
+\setbeamercolor*{palette tertiary}{fg=myaqua,bg=myaqua} 
+}
+    {}
+\makeatother
+
+%% CHANGE COLOR OF BULLETS %%
+\setbeamercolor{item}{fg=brick} % color of bullets
+\setbeamercolor{subitem}{fg=mygold}
+
+%% DEFINE TIKZ ITEMS %%
+\tikzset{
+    %Define standard arrow tip
+    >=stealth',
+    %Define style for boxes
+    punkt/.style={
+           rectangle,
+           rounded corners,
+           draw=black, very thick,
+           text width=3em,
+           minimum height=2em,
+           text centered},
+    % Define arrow style 1
+    pil/.style={
+           <-,
+           thick,
+           shorten <=2pt,
+           shorten >=2pt,}
+        % Define arrow style
+           }
+           
+ %% Perpendiculas symbol
+ \newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\bv}{\begin{Verbatim}[numbers=left, baselinestretch=1,
+    xleftmargin=.5in, xrightmargin=.1in, frame=single,
+    rulecolor=\color{gray}]}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamerfont{title like}{shape=\scshape}
+\setbeamerfont{frametitle}{shape=\scshape}
+\setbeamercolor{frametitle}{fg=myaqua!120,bg=white}
+\setbeamercolor{title}{fg=myaqua!120}
+%\setbeamertemplate{frametitle}{\vspace{6em}}
+
+\setbeamercolor*{lower separation line head}{bg=redwine} 
+\setbeamercolor*{normal text}{fg=black} 
+\setbeamercolor*{alerted text}{fg=myred} 
+\setbeamercolor*{example text}{fg=brick} 
+\setbeamercolor*{structure}{fg=black} 
+ 
+\setbeamercolor*{palette tertiary}{fg=black!80,bg=white} 
+\setbeamercolor*{palette quaternary}{fg=black,bg=black!10} 
+
+\renewcommand{\(}{\begin{columns}}
+\renewcommand{\)}{\end{columns}}
+\newcommand{\<}[1]{\begin{column}{#1}}
+\renewcommand{\>}{\end{column}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Introduction to Python}
+\author{Michelle Torres}
+\date{August 7, 2016}
+
+\begin{document}
+\newcommand<>{\highlighton}[1]{%
+  \alt#2{\structure{#1}}{{#1}}
+}
+
+\newcommand{\icon}[1]{\pgfimage[height=1em]{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% START THE SLIDES %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{coverframe}
+\begin{frame}
+\titlepage	
+\end{frame}
+\end{coverframe}
+
+
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Course Overview
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Course overview}
+\begin{frame}
+\frametitle{Course Overview}
+\begin{itemize}
+\item Michelle's office hours (277):
+\begin{itemize}
+\item Officially one hour after every class meeting
+\item Feel free to stop by any time I'm in
+\item Email questions or if you want to meet
+\end{itemize}
+\item Homeworks:
+\begin{itemize}
+\item Will be about 6 homework assignments
+\item Will be due Thursday and Monday (end of day)
+\item Can work together, but each keystroke should be your own
+\item All work must be done on git -- commit often with comments
+\item Direct all questions about grading, due date, etc. to Erin
+\end{itemize}
+\item Poster session TBD
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Goals
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Goals}
+\begin{frame}
+\frametitle{Goals}
+\begin{itemize}
+\item Learn Python
+\begin{itemize}
+\item Web scraping, APIs, data structures, etc.
+\end{itemize}
+\item Transferable skills to other languages
+\begin{itemize}
+\item Ruby, SQL, Perl, programming logic
+\end{itemize}
+\item Send a signal!
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Quiz
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Quiz}
+\begin{frame}
+ \frametitle{Quiz (!)}
+ \begin{itemize}
+ 	\item Please go to:
+ 	\begin{itemize}
+ 	\item http://smtorres.org/quiz1.html
+	\item http://smtorres.org/quiz2.html	
+	\end{itemize}
+ \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Syntax}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Syntax
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Syntax}
+\begin{itemize}
+\item Object types
+\begin{itemize}
+\item String
+\item Int
+\item Float
+\item List
+\item Tuple
+\item Dictionary
+\end{itemize}
+\item Conditionals
+\item Loop
+\item Functions
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Strings 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Strings}
+\begin{frame}[fragile]
+\frametitle{Strings}
+\begin{itemize}
+\item Any group of characters recognized as text. \pause
+\item Written between single quotes, double quotes or triple quotes. \pause
+\begin{verbatim}
+>>> name='Dave'
+>>> age='30'
+>>> intro="Hi my name is "+name+".\nI'm "+age+" years old."
+>>> intro
+>>> print intro
+>>> new_intro = """Hello!
+... I'm Dave.
+... What's up?"""
+>>> new_intro
+>>> print new_intro
+\end{verbatim}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Strings 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+ \frametitle{String}
+ \begin{itemize}
+ 	\item You can call any character in the string. \pause
+\begin{verbatim}
+>>> intro[0]
+>>> intro[1]
+>>> intro[3]
+\end{verbatim}
+ \pause
+ 	\item Strings are immutable.  \pause
+	\item But you can split a string into words. \pause
+\begin{verbatim}
+>>> intro.split()
+\end{verbatim}
+\pause
+	 \item Or into any other chunks using a character. \pause
+\begin{verbatim}
+>>> new_intro.split('\n')
+\end{verbatim} \pause
+ \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% String 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{String}
+\begin{itemize}
+\item Run this code. What is happening?\pause
+\end{itemize}
+\begin{verbatim}
+>>> intro[2:]
+>>> intro[-2:]
+>>> intro[:2]
+>>> intro[:-2]
+>>> intro[::2]
+>>> intro[::-2]
+>>> intro[::3]
+\end{verbatim}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% String 4 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{String}
+  \begin{itemize}
+  	\item It requires a little more work to split a string into letters. \pause
+	\begin{verbatim}
+>>> [letter for letter in name]
+>>> [letter for letter in intro]
+\end{verbatim} \pause
+	\item Let's combine them again. \pause
+	\begin{verbatim}
+>>> myletters=[letter for letter in intro]
+>>> ''.join(myletters)
+>>> '\n'.join(myletters)
+\end{verbatim}
+  \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Int 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Int}
+\begin{frame}[fragile]
+  \frametitle{Int}
+  \begin{itemize}
+  	\item Integers. \pause
+	\item You can do mathematical operations using these.
+	\begin{itemize}
+		\item Usual suspects: +  -  * /
+		\item Exponentiate: **
+		\item Remainder: \%		
+	\end{itemize} \pause
+	\item Remember the results are \emph{always}  rounded down! \pause
+\footnotesize
+\begin{verbatim}
+>>> whole=5/3
+>>> remainder=5%3
+>>> "Five divided by three is %d and %d fifths" % (whole, remainder)
+\end{verbatim}
+\pause
+	\item You can assign numbers using different operators. \pause
+\footnotesize
+\begin{verbatim}
+>>> five=5
+>>> five+=1
+>>> five
+>>> five/=3
+>>> five
+>>> five-=2
+>>> five
+\end{verbatim}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Float
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Float}
+\begin{frame}[fragile]
+  \frametitle{Float}
+  \begin{itemize}
+  	\item Real numbers. \pause 
+	\item Written by adding the decimal to an integer. \pause
+\begin{verbatim}
+>>> 12.0/5
+>>> float(7)
+>>> type(2.*8)
+\end{verbatim}	
+  \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% List
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{List}
+\begin{frame}[fragile]
+\footnotesize
+\frametitle{List}
+\begin{itemize}
+\item Collection of any type objects -- even lists \pause
+\begin{verbatim}
+>>> myletters
+>>> type(myletters)
+\end{verbatim} \pause
+\item Lists can be changed, and include multiple object types \pause
+\begin{verbatim}
+>>> myletters.append(5)
+>>> myletters[-1]
+>>> type(myletters[-1])
+>>> myletters[0]='Orange'
+\end{verbatim}
+\pause
+\item Indexing starts at 0! \pause
+\begin{verbatim}
+>>> myletters[len(myletters)]
+\end{verbatim}
+\pause
+\item You can insert into any position
+\begin{verbatim}
+>>> myletters.insert(2, '!')
+\end{verbatim}
+\pause
+\item And remove from any position \pause
+\begin{verbatim}
+>>> myletters.pop(1)
+\end{verbatim}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Tuples
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Tuples}
+\begin{frame}[fragile]
+\frametitle{Tuples}
+\begin{itemize}
+\item Tuples are like lists -- combination of any objects \pause
+\item But are immutable \pause
+\item Not very common, but very useful sometimes \pause
+\begin{verbatim}
+>>> tup=(1,6,5,'Apple')
+>>> tup[1]
+>>> tup[1]=9
+>>> tup.append(9)
+\end{verbatim}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Dictionary
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Dictionary}
+\begin{frame}[fragile]
+  \frametitle{Dictionary}
+  \begin{itemize}
+  	\item It is what it sounds like. \pause
+	\item Here is how you create one. \pause
+\begin{verbatim}
+>>> myDict={'name':'Dave', 'last_name':'Carlson', 'age':30}
+\end{verbatim}
+	\item Unlike lists, there is no order to elements. \pause
+	\item You call elements using keys. \pause
+\begin{verbatim}
+>>> myDict
+>>> myDict.keys()
+>>> myDict.values()
+>>> myDict['last_name']
+>>> myDict['middle_name']='George'
+\end{verbatim}
+\pause
+\item These are particularly useful when we start defining classes (next class)
+  \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Conditionals
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Conditionals}
+\begin{frame}[fragile]
+\frametitle{Conditionals}
+\begin{itemize}
+\item Perform an operation (or several) if condition is met (or not) \pause
+\begin{verbatim}
+>>> x=2
+>>> if x==1:
+...     print 'x is one'
+... elif x==2:
+...     print 'x is two'
+... else:
+...     print 'x is neither one nor two'
+\end{verbatim}
+\pause
+\item Can be conditions or boolean (True or False) \pause
+\item Multiple lines of code: \pause
+\begin{itemize}
+\item Indentation matters! \pause
+\item Consistency is important, but exactly 4 spaces is `Pythonic' \pause
+\item Will cause errors \pause
+\item Even an empty line with spaces can cause errors
+\end{itemize}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Loops
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Loops and functions}
+\subsection{Loops}
+\begin{frame}[fragile]
+\frametitle{Loops}
+\begin{itemize}
+\item Two types of loops: for and while \pause
+\item for loop: loops over some list \pause
+\item while loop: loops while condition is true \pause
+\item Can nest loops (and conditionals, etc.) \pause
+\begin{verbatim}
+>>> even_numbers=[]
+>>> for i in range(1,10):
+...     if i%2==0:
+...         even_numbers.append(i)
+...
+>>> for letter in 'word': print letter
+...
+>>> sum([.05**i for i in range(1,10)])
+>>> while len(myletters)>1:
+...     myletters.pop()
+...
+\end{verbatim}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Quick exercise
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Exercise}
+\begin{frame}
+\frametitle{Quick exercise}
+\begin{itemize}
+\item Write code that saves the first ten numbers of the Fibonacci sequence to a list: \pause
+\begin{itemize}
+\item With a for loop \pause
+\item With a while loop \pause
+\end{itemize}
+\item A while loop can always do what a for loop does, but syntax is simpler
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Functions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Functions}
+\begin{frame}[fragile]
+  \frametitle{Functions}
+  \begin{itemize} 
+  	\item They help write cleaner code. \pause
+	\item Keep them simple. \pause
+	\item You can return any type of object. \pause
+	\item Don't forget to add \texttt{return} for output. \pause
+\begin{verbatim}
+>>> def addSquares(x,y):
+...     return x**2+y**2
+...
+>>> addSquares(3,4)
+\end{verbatim}
+\pause
+\item Change the Fibonacci code to find first $n$ numbers of sequence
+  \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}

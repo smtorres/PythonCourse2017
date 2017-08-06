@@ -238,14 +238,15 @@
 \begin{itemize}
 \item Any group of characters recognized as text. \pause
 \item Written between single quotes, double quotes or triple quotes. \pause
+\scriptsize
 \begin{verbatim}
->>> name='Dave'
->>> age='30'
+>>> name='Michelle'
+>>> age='29'
 >>> intro="Hi my name is "+name+".\nI'm "+age+" years old."
 >>> intro
 >>> print intro
 >>> new_intro = """Hello!
-... I'm Dave.
+... I'm Michelle.
 ... What's up?"""
 >>> new_intro
 >>> print new_intro
@@ -275,6 +276,7 @@
 \pause
 	 \item Or into any other chunks using a character. \pause
 \begin{verbatim}
+>>> intro.split(".")
 >>> new_intro.split('\n')
 \end{verbatim} \pause
  \end{itemize}
@@ -287,22 +289,51 @@
 \begin{frame}[fragile]
 \frametitle{String}
 \begin{itemize}
+\item Create this string\pause
+\end{itemize}
+\begin{verbatim}
+>>> wustl = 'WashingtonUniversity'
+\end{verbatim}
+\begin{itemize}
+	\item Let's check how the characters are positioned...
+\end{itemize}
+\begin{table}[]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+{\color[HTML]{3531FF} 0}   & {\color[HTML]{3531FF} 1}   & {\color[HTML]{3531FF} 2}   & {\color[HTML]{3531FF} 3}   & {\color[HTML]{3531FF} 4}   & {\color[HTML]{3531FF} 5}   & {\color[HTML]{3531FF} 6}   & {\color[HTML]{3531FF} 7}   & {\color[HTML]{3531FF} 8}   & {\color[HTML]{3531FF} 9}   & {\color[HTML]{3531FF} 10} & {\color[HTML]{3531FF} 11} & {\color[HTML]{3531FF} 12} & {\color[HTML]{3531FF} 13} & {\color[HTML]{3531FF} 14} & {\color[HTML]{3531FF} 15} & {\color[HTML]{3531FF} 16} & {\color[HTML]{3531FF} 17} & {\color[HTML]{3531FF} 18} & {\color[HTML]{3531FF} 19} \\ \hline
+W                          & a                          & s                          & h                          & i                          & n                          & g                          & t                          & o                          & n                          & U                         & n                         & i                         & v                         & e                         & r                         & s                         & i                         & t                         & y                         \\ \hline
+{\color[HTML]{FE0000} -20} & {\color[HTML]{FE0000} -19} & {\color[HTML]{FE0000} -18} & {\color[HTML]{FE0000} -17} & {\color[HTML]{FE0000} -16} & {\color[HTML]{FE0000} -15} & {\color[HTML]{FE0000} -14} & {\color[HTML]{FE0000} -13} & {\color[HTML]{FE0000} -12} & {\color[HTML]{FE0000} -11} & {\color[HTML]{FE0000} -10} & {\color[HTML]{FE0000} -9} & {\color[HTML]{FE0000} -8} & {\color[HTML]{FE0000} -7} & {\color[HTML]{FE0000} -6} & {\color[HTML]{FE0000} -5} & {\color[HTML]{FE0000} -4} & {\color[HTML]{FE0000} -3} & {\color[HTML]{FE0000} -2} & {\color[HTML]{FE0000} -1}  \\ \hline
+\end{tabular}%
+}
+\end{table}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% String 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{String}
+\begin{itemize}
 \item Run this code. What is happening?\pause
 \end{itemize}
 \begin{verbatim}
->>> intro[2:]
->>> intro[-2:]
->>> intro[:2]
->>> intro[:-2]
->>> intro[::2]
->>> intro[::-2]
->>> intro[::3]
+>>> wustl[2:]
+>>> wustl[-2:]
+>>> wustl[:2]
+>>> wustl[:-2]
+>>> wustl[::2]
+>>> wustl[::-2]
+>>> wustl[::3]
+>>> wustl[1:8]
 \end{verbatim}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% String 4 
+%% String 5 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
   \frametitle{String}
@@ -337,12 +368,13 @@
 		\item Remainder: \%		
 	\end{itemize} \pause
 	\item Remember the results are \emph{always}  rounded down! \pause
-\footnotesize
+\tiny
 \begin{verbatim}
 >>> whole=5/3
 >>> remainder=5%3
 >>> "Five divided by three is %d and %d fifths" % (whole, remainder)
 \end{verbatim}
+\normalsize
 \pause
 	\item You can assign numbers using different operators. \pause
 \footnotesize
@@ -431,6 +463,8 @@
 >>> tup[1]
 >>> tup[1]=9
 >>> tup.append(9)
+>>> (a,b) = (1, ['I', 'Like', 'You'])
+>>> a
 \end{verbatim}
 \end{itemize}
 \end{frame}
@@ -445,9 +479,11 @@
   \begin{itemize}
   	\item It is what it sounds like. \pause
 	\item Here is how you create one. \pause
+\scriptsize
 \begin{verbatim}
->>> myDict={'name':'Dave', 'last_name':'Carlson', 'age':30}
+>>> myDict={'name':'Mich', 'last_name':'Torres', 'age':29}
 \end{verbatim}
+\normalsize
 	\item Unlike lists, there is no order to elements. \pause
 	\item You call elements using keys. \pause
 \begin{verbatim}
@@ -455,7 +491,7 @@
 >>> myDict.keys()
 >>> myDict.values()
 >>> myDict['last_name']
->>> myDict['middle_name']='George'
+>>> myDict['middle_name']='Silvia'
 \end{verbatim}
 \pause
 \item These are particularly useful when we start defining classes (next class)

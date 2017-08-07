@@ -1,0 +1,15 @@
+\frametitle{Functions}
+  \begin{itemize}
+  	\item They help write cleaner code. \pause
+	\item Keep them simple. \pause
+	\item You can return any type of object. \pause
+	\item Don't forget to add \texttt{return} for output. \pause
+\begin{verbatim}
+>>> def addSquares(x,y):
+...     return x**2+y**2
+...
+>>> addSquares(3,4)
+\end{verbatim}
+\pause
+\item Change the Fibonacci code to find first $n$ numbers of sequence
+  \end{itemize}

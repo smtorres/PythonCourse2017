@@ -1,0 +1,66 @@
+\beamer@endinputifotherversion {3.36pt}
+\headcommand {\slideentry {0}{0}{1}{1/1}{}{0}}
+\headcommand {\beamer@framepages {1}{1}}
+\headcommand {\sectionentry {1}{Introduction}{2}{Introduction}{0}}
+\headcommand {\beamer@sectionpages {1}{1}}
+\headcommand {\beamer@subsectionpages {1}{1}}
+\headcommand {\beamer@subsectionentry {0}{1}{1}{2}{Course overview}}\headcommand {\beamer@subsectionpages {2}{1}}
+\headcommand {\slideentry {1}{1}{1}{2/2}{Course overview}{0}}
+\headcommand {\beamer@framepages {2}{2}}
+\headcommand {\beamer@subsectionentry {0}{1}{2}{3}{Goals}}\headcommand {\beamer@subsectionpages {2}{2}}
+\headcommand {\slideentry {1}{2}{1}{3/3}{Goals}{0}}
+\headcommand {\beamer@framepages {3}{3}}
+\headcommand {\beamer@subsectionentry {0}{1}{3}{4}{Quiz}}\headcommand {\beamer@subsectionpages {3}{3}}
+\headcommand {\slideentry {1}{3}{1}{4/4}{Quiz}{0}}
+\headcommand {\beamer@framepages {4}{4}}
+\headcommand {\sectionentry {2}{Syntax}{5}{Syntax}{0}}
+\headcommand {\beamer@sectionpages {2}{4}}
+\headcommand {\beamer@subsectionpages {4}{4}}
+\headcommand {\slideentry {2}{0}{1}{5/5}{}{0}}
+\headcommand {\beamer@framepages {5}{5}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{6}{Strings}}\headcommand {\beamer@subsectionpages {5}{5}}
+\headcommand {\slideentry {2}{1}{1}{6/8}{Strings}{0}}
+\headcommand {\beamer@framepages {6}{8}}
+\headcommand {\slideentry {2}{1}{2}{9/15}{Strings}{0}}
+\headcommand {\beamer@framepages {9}{15}}
+\headcommand {\slideentry {2}{1}{3}{16/17}{Strings}{0}}
+\headcommand {\beamer@framepages {16}{17}}
+\headcommand {\slideentry {2}{1}{4}{18/19}{Strings}{0}}
+\headcommand {\beamer@framepages {18}{19}}
+\headcommand {\slideentry {2}{1}{5}{20/22}{Strings}{0}}
+\headcommand {\beamer@framepages {20}{22}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{23}{Int}}\headcommand {\beamer@subsectionpages {6}{22}}
+\headcommand {\slideentry {2}{2}{1}{23/28}{Int}{0}}
+\headcommand {\beamer@framepages {23}{28}}
+\headcommand {\beamer@subsectionentry {0}{2}{3}{29}{Float}}\headcommand {\beamer@subsectionpages {23}{28}}
+\headcommand {\slideentry {2}{3}{1}{29/31}{Float}{0}}
+\headcommand {\beamer@framepages {29}{31}}
+\headcommand {\beamer@subsectionentry {0}{2}{4}{32}{List}}\headcommand {\beamer@subsectionpages {29}{31}}
+\headcommand {\slideentry {2}{4}{1}{32/39}{List}{0}}
+\headcommand {\beamer@framepages {32}{39}}
+\headcommand {\beamer@subsectionentry {0}{2}{5}{40}{Tuples}}\headcommand {\beamer@subsectionpages {32}{39}}
+\headcommand {\slideentry {2}{5}{1}{40/43}{Tuples}{0}}
+\headcommand {\beamer@framepages {40}{43}}
+\headcommand {\beamer@subsectionentry {0}{2}{6}{44}{Dictionary}}\headcommand {\beamer@subsectionpages {40}{43}}
+\headcommand {\slideentry {2}{6}{1}{44/49}{Dictionary}{0}}
+\headcommand {\beamer@framepages {44}{49}}
+\headcommand {\beamer@subsectionentry {0}{2}{7}{50}{Conditionals}}\headcommand {\beamer@subsectionpages {44}{49}}
+\headcommand {\slideentry {2}{7}{1}{50/57}{Conditionals}{0}}
+\headcommand {\beamer@framepages {50}{57}}
+\headcommand {\sectionentry {3}{Loops and functions}{58}{Loops and functions}{0}}
+\headcommand {\beamer@sectionpages {5}{57}}
+\headcommand {\beamer@subsectionpages {50}{57}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{58}{Loops}}\headcommand {\beamer@subsectionpages {58}{57}}
+\headcommand {\slideentry {3}{1}{1}{58/62}{Loops}{0}}
+\headcommand {\beamer@framepages {58}{62}}
+\headcommand {\beamer@subsectionentry {0}{3}{2}{63}{Exercise}}\headcommand {\beamer@subsectionpages {58}{62}}
+\headcommand {\slideentry {3}{2}{1}{63/66}{Exercise}{0}}
+\headcommand {\beamer@framepages {63}{66}}
+\headcommand {\beamer@subsectionentry {0}{3}{3}{67}{Functions}}\headcommand {\beamer@subsectionpages {63}{66}}
+\headcommand {\slideentry {3}{3}{1}{67/72}{Functions}{0}}
+\headcommand {\beamer@framepages {67}{72}}
+\headcommand {\beamer@partpages {1}{72}}
+\headcommand {\beamer@subsectionpages {67}{72}}
+\headcommand {\beamer@sectionpages {58}{72}}
+\headcommand {\beamer@documentpages {72}}
+\headcommand {\def \inserttotalframenumber {19}}

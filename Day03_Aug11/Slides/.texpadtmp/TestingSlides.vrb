@@ -1,0 +1,17 @@
+\frametitle{Break, Continue and Else}
+\begin{itemize}
+\item These statements can be handy using \texttt{while} or \texttt{for} loops. \pause
+\item \texttt{break \#stops the loop} \pause
+\item \texttt{continue \# moves on to the next iteration} \pause
+\item \texttt{else \#executed only if all iterations are completed} \pause
+\end{itemize}
+\begin{verbatim}
+>>> for n in range(2, 10):
+...     for x in range(2, n):
+...         if n % x == 0:
+...             print(n, 'equals', x, '*', n//x)
+...             break
+...     else:
+...         print(n, 'is a prime number')
+...
+\end{verbatim}

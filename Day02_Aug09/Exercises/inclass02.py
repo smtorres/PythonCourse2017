@@ -128,6 +128,9 @@ class school():
     def __str__(self): #print function will display the school name on one line, and sorted kids on other line
         return "%s\n%s" %(self.school_name, self.sort())
 
+    def __setitem__(self, grade, name):
+      return self.add(name, grade)
+
 
 #################### INHERITANCES
 

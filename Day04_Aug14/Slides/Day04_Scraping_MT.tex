@@ -1,0 +1,220 @@
+\documentclass[xcolor=x11names,compress]{beamer}
+
+%% General document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\PassOptionsToPackage{table}{xcolor}
+\usepackage{graphicx}
+\usepackage{multirow,multicol}
+\usepackage{amsmath}
+\usepackage{mathpazo}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{array,colortbl,booktabs}
+\usepackage{soul}
+\usepackage{enumerate}
+\usepackage{url}
+\usepackage{verbatimbox}
+\usepackage{fancyvrb}
+\usepackage{dirtree}
+\usepackage{tikz}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usetikzlibrary{positioning,shapes.misc}
+\usetikzlibrary{decorations.fractals}
+\usetikzlibrary{calc}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usetikzlibrary{arrows}
+\usetikzlibrary{fit}
+%\usepackage{color, colortbl}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\slideentry}{\advance\beamer@xpos by1\relax}{}{}{}
+\def\beamer@subsectionentry#1#2#3#4#5{\advance\beamer@xpos by1\relax}%
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% Beamer Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\useoutertheme[subsection=false, shadow]{miniframes}
+\useinnertheme{circles}
+\usefonttheme{structurebold}
+\usepackage{palatino}
+\usepackage{tcolorbox}
+\usepackage{lipsum}
+
+%% COLOR DEFINITION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{mygold}{RGB}{236,208,120}
+\definecolor{brick}{RGB}{217,91,67}
+\definecolor{myred}{RGB}{192,41,66}
+\definecolor{redwine}{RGB}{102,0,102}
+\definecolor{myaqua}{RGB}{83,119,122}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% OTHER EXTRA STUFF%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CHANGE COVER SLIDE %%
+\makeatletter
+    \newenvironment{coverframe}{
+\setbeamercolor*{palette tertiary}{fg=myaqua,bg=myaqua} 
+}
+    {}
+\makeatother
+
+%% CHANGE COLOR OF BULLETS %%
+\setbeamercolor{item}{fg=brick} % color of bullets
+\setbeamercolor{subitem}{fg=mygold}
+
+%% DEFINE TIKZ ITEMS %%
+\tikzset{
+    %Define standard arrow tip
+    >=stealth',
+    %Define style for boxes
+    punkt/.style={
+           rectangle,
+           rounded corners,
+           draw=black, very thick,
+           text width=3em,
+           minimum height=2em,
+           text centered},
+    % Define arrow style 1
+    pil/.style={
+           <-,
+           thick,
+           shorten <=2pt,
+           shorten >=2pt,}
+        % Define arrow style
+           }
+           
+ %% Perpendiculas symbol
+ \newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\bv}{\begin{Verbatim}[numbers=left, baselinestretch=1,
+    xleftmargin=.5in, xrightmargin=.1in, frame=single,
+    rulecolor=\color{gray}]}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamerfont{title like}{shape=\scshape}
+\setbeamerfont{frametitle}{shape=\scshape}
+\setbeamercolor{frametitle}{fg=myaqua!120,bg=white}
+\setbeamercolor{title}{fg=myaqua!120}
+%\setbeamertemplate{frametitle}{\vspace{6em}}
+
+\setbeamercolor*{lower separation line head}{bg=redwine} 
+\setbeamercolor*{normal text}{fg=black} 
+\setbeamercolor*{alerted text}{fg=myred} 
+\setbeamercolor*{example text}{fg=brick} 
+\setbeamercolor*{structure}{fg=black} 
+ 
+\setbeamercolor*{palette tertiary}{fg=black!80,bg=white} 
+\setbeamercolor*{palette quaternary}{fg=black,bg=black!10} 
+
+\renewcommand{\(}{\begin{columns}}
+\renewcommand{\)}{\end{columns}}
+\newcommand{\<}[1]{\begin{column}{#1}}
+\renewcommand{\>}{\end{column}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[Scraping using Selenium and BeautifulSoup]{Python Class 4: Scrape the web!}
+\author{Michelle Torres}
+\date{August 14, 2016}
+
+\begin{document}
+\newcommand<>{\highlighton}[1]{%
+  \alt#2{\structure{#1}}{{#1}}
+}
+
+\newcommand{\icon}[1]{\pgfimage[height=1em]{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% START THE SLIDES %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{coverframe}
+\begin{frame}
+\titlepage	
+\end{frame}
+\end{coverframe}
+
+
+\section[Outline]{}
+\frame{\tableofcontents}
+
+\section{Urllib and Beautiful Soup}
+\frame{
+\frametitle{Overview}
+\begin{enumerate}
+	\item Call the website and open it
+	\item Extract the html code
+	\item Retrieve information using the names of the nodes, tags, ids, etc.
+	\item Store it in lists or directly to CSV files
+\end{enumerate}
+}
+
+\begin{frame}[fragile]
+\frametitle{Getting to know the page source}
+\begin{verbatim}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+
+</body>
+</html>
+\end{verbatim}	
+\end{frame}
+
+
+\section{Selenium}
+\frame{
+\frametitle{Why do we care about another approach?}
+\begin{itemize}[<+->]
+	\item Beautiful Soup and Urllib are ``crawlers'' that operate in the ``background''.
+	\item They are incredibly fast...
+	\item ... but also easier to detect and block
+	\item Plus, they sometimes a bit restrictive if you don't know the exact node or thing to extract
+\end{itemize}
+}
+
+\frame{
+\frametitle{Selenium}
+\begin{itemize}[<+->]
+	\item Selenium is a ``remote driver'' of your favorite browser
+	\item Therefore, you can pretty much simulate behavior of a human ``surfing the web''
+	\item With the right tricks, the likelihood of tracking and blocking your ``bot'' decreases.
+	\item It also offers flexibility in terms of ``unknown'' items: you can even look by name of buttons in the page
+	\item \textcolor{myred}{There are some downsides though...}
+	\begin{itemize}
+		\item It is slower
+		\item It is dependent on your internet connection quality
+		\item Sometimes it is *very* annoying!
+	\end{itemize}
+\end{itemize}
+}
+
+\section{Some tricks}
+\frame{
+\frametitle{Some tricks and advice to become a pro-scraper}
+
+\begin{itemize}[<+->]
+	\item Google Chrome is better to track nodes and page sources
+	\item Inspect the source and get to know your document/website!
+	\item Use the 'Copy Xpath' command if you're having troubles
+	\item If you have a complex website, visit the websites that store java scripts. They give hints on how information is displayed
+	\item Use time breaks to avoid being blocked
+\end{itemize}
+}
+
+
+\end{document}

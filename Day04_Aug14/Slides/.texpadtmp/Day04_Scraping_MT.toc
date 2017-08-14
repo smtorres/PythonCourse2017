@@ -1,0 +1,4 @@
+\beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {2}{Urllib and Beautiful Soup}{3}{0}{1}
+\beamer@sectionintoc {3}{Selenium}{5}{0}{2}
+\beamer@sectionintoc {4}{Some tricks}{17}{0}{3}

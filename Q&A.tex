@@ -11,3 +11,23 @@ A= Not identical but with a super similar logic. The library is called "pdb" (ru
 	* filter(): creates a list of elements for which a function returns true
 	* enumerate(): allows us to loop over something and have an automatic counter
 	* reduce(): it applies a rolling computation to sequential pairs of values in a list.
+
+- How to schedule Python scripts? Use CRON!
+	1. Type in terminal: nano <name of cron script>.cron
+	2. Syntax:
+		* * * * * python <name of python script>.py
+		1st * : minutes [0-60]
+		2nd * : hours [0-23]
+		3rd *: day of the month [1-31]
+		4th *: month [1-12]
+		5th *: day of the week [MON-SUN]
+	3. SAVE IT [CTRL+X, Y, Enter]
+	4. Load the cron document into the "crontab": crontab <name of cron script>.cron
+	5. Check the document is there: crontab -l
+	6. Voilá!
+	
+
+
+		
+	
+		

@@ -22,6 +22,12 @@ for c, value in enumerate(my_list, 1):
 # Application: square each element of the following list
 
 items = [1, 2, 3, 4, 5]
+mylist = []
+for i in items:
+	mylist.append(i**2)
+mylist
+
+
 squared = list(map(lambda x: x**2, items))
 
 def multiply(x):

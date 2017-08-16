@@ -24,13 +24,16 @@ with open('test_with_fields.csv', 'wb') as f:
     my_writer.writerow({"B":i, "A":i-1})
     
     
-
 #Now lets read some things
 with open('test.csv', 'rb') as f:
   print "Reading test1.csv"
   my_reader = csv.reader(f)
+  mydat = []
   for row in my_reader:
     print row
+    mydat.append(row)
+print mydat
+
 
 #Now lets read some things with field names
 with open('test_with_fields.csv', 'rb') as f:

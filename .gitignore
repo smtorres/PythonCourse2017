@@ -18,3 +18,19 @@ Day04_Aug14/05_selenium.py
 Day04_Aug14/02_csvstuff.py
 
 Day04_Aug14/04_scrape_covers.py
+
+*.aux
+
+*.log
+
+*.nav
+
+*.snm
+
+*.out
+
+*.gz
+
+*.toc
+
+*.vrb

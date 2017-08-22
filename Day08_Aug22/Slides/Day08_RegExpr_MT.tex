@@ -1,0 +1,314 @@
+\documentclass[xcolor=x11names,compress]{beamer}
+
+%% General document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\PassOptionsToPackage{table}{xcolor}
+\usepackage{graphicx}
+\usepackage{multirow,multicol}
+\usepackage{amsmath}
+\usepackage{mathpazo}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{array,colortbl,booktabs}
+\usepackage{soul}
+\usepackage{enumerate}
+\usepackage{url}
+\usepackage{verbatimbox}
+\usepackage{fancyvrb}
+\usepackage{dirtree}
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes.misc}
+\usetikzlibrary{decorations.fractals}
+\usetikzlibrary{calc}
+\usepackage[normalem]{ulem}
+\useunder{\uline}{\ul}{}
+\usetikzlibrary{arrows}
+\usetikzlibrary{fit}
+%\usepackage{color, colortbl}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\slideentry}{\advance\beamer@xpos by1\relax}{}{}{}
+\def\beamer@subsectionentry#1#2#3#4#5{\advance\beamer@xpos by1\relax}%
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% Beamer Layout %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\useoutertheme[subsection=false, shadow]{miniframes}
+\useinnertheme{circles}
+\usefonttheme{structurebold}
+\usepackage{palatino}
+\usepackage{tcolorbox}
+\usepackage{lipsum}
+
+%% COLOR DEFINITION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{mygold}{RGB}{236,208,120}
+\definecolor{brick}{RGB}{217,91,67}
+\definecolor{myred}{RGB}{192,41,66}
+\definecolor{redwine}{RGB}{102,0,102}
+\definecolor{myaqua}{RGB}{83,119,122}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% OTHER EXTRA STUFF%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% CHANGE COVER SLIDE %%
+\makeatletter
+    \newenvironment{coverframe}{
+\setbeamercolor*{palette tertiary}{fg=myaqua,bg=myaqua} 
+}
+    {}
+\makeatother
+
+%% CHANGE COLOR OF BULLETS %%
+\setbeamercolor{item}{fg=brick} % color of bullets
+\setbeamercolor{subitem}{fg=mygold}
+
+%% DEFINE TIKZ ITEMS %%
+\tikzset{
+    %Define standard arrow tip
+    >=stealth',
+    %Define style for boxes
+    punkt/.style={
+           rectangle,
+           rounded corners,
+           draw=black, very thick,
+           text width=3em,
+           minimum height=2em,
+           text centered},
+    % Define arrow style 1
+    pil/.style={
+           <-,
+           thick,
+           shorten <=2pt,
+           shorten >=2pt,}
+        % Define arrow style
+           }
+           
+ %% Perpendiculas symbol
+ \newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+\newcommand{\ds}{\displaystyle}
+
+\newcommand{\bv}{\begin{Verbatim}[numbers=left, baselinestretch=1,
+    xleftmargin=.5in, xrightmargin=.1in, frame=single,
+    rulecolor=\color{gray}]}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamerfont{title like}{shape=\scshape}
+\setbeamerfont{frametitle}{shape=\scshape}
+\setbeamercolor{frametitle}{fg=myaqua!120,bg=white}
+\setbeamercolor{title}{fg=myaqua!120}
+%\setbeamertemplate{frametitle}{\vspace{6em}}
+
+\setbeamercolor*{lower separation line head}{bg=redwine} 
+\setbeamercolor*{normal text}{fg=black} 
+\setbeamercolor*{alerted text}{fg=myred} 
+\setbeamercolor*{example text}{fg=brick} 
+\setbeamercolor*{structure}{fg=black} 
+ 
+\setbeamercolor*{palette tertiary}{fg=black!80,bg=white} 
+\setbeamercolor*{palette quaternary}{fg=black,bg=black!10} 
+
+\renewcommand{\(}{\begin{columns}}
+\renewcommand{\)}{\end{columns}}
+\newcommand{\<}[1]{\begin{column}{#1}}
+\renewcommand{\>}{\end{column}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Regular expressions}
+\author{Michelle Torres}
+\date{August 22, 2017}
+
+\begin{document}
+\newcommand<>{\highlighton}[1]{%
+  \alt#2{\structure{#1}}{{#1}}
+}
+
+\newcommand{\icon}[1]{\pgfimage[height=1em]{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% START THE SLIDES %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{coverframe}
+\begin{frame}
+\titlepage	
+\end{frame}
+\end{coverframe}
+
+
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Overview
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Overview}
+\begin{frame}
+\frametitle{Regular expressions: what, why and how?}
+\begin{itemize}
+	\item \textcolor{myred}{Regular expressions} are useful to extract information from text.
+	\item Set of ``rules'' to identify or match a particular sequence of characters.
+	\item Most text in \textcolor{myaqua}{ASCII}: letters, digits, punctuation and symbols (but unicode can also be used)
+	\item In Python, mainly through library \texttt{re}.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Matching characters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Matching characters I}
+\subsection{Simple}
+\begin{frame}[fragile]
+\frametitle{The ABC's (and 123s) of regexpr}
+\begin{itemize}
+	\item ABC: just letters
+	\item Numbers: the character ``$\backslash$d'' can be used in place of any digit from 0 to 9
+	\item Wildcard: . [to actually look for a period, use``$\backslash$.'']
+	\begin{itemize}
+		\item \texttt{"cat.", "896.", "?=+.", "abc1"}
+	\end{itemize} 
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Matching characters II
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Include}
+\begin{frame}[fragile]
+\frametitle{Including characters}
+\begin{itemize}
+	\item The ``.'' sometimes is too powerful!
+	\item Use brackets \textcolor{brick}{[]}. The instruction will only match \textcolor{redwine}{a single} character/letter inside the bracket and nothing else.
+	\begin{itemize}
+	\item Match ONLY the first 3 words: \texttt{"can", "man", "fan", "dan", "ran", "pan"} \pause $\Rightarrow$ [cmf]an
+	\end{itemize}
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Matching characters II
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Exclude}
+\begin{frame}[fragile]
+\frametitle{Excluding characters}
+\begin{itemize}
+	\item To exclude chunks, use a hat ( $\hat{ }$ )
+	\item \texttt{[\^{}abc]}: do not include if there's an a. b or c.
+	\item Filter the first two words: \texttt{"hog", "dog", "bog"} \pause $\Rightarrow$ [\^{ }b]og
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Matching characters III
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Tricks I}
+\begin{frame}[fragile]
+\frametitle{Some tricks!}
+	\begin{itemize}
+		\item Ranges: [0-6], [a-z]
+		\item Lower vs. Upper: [a-zA-Z]
+		\item Shortcut for characters in English: $\backslash$w $=$ [a-zA-Z0-9\_]
+		\begin{itemize}
+			\item Filter the first 3 words: \texttt{"Ana","Bob","Cpc", "aax", "bby", "ccz"} \pause $\Rightarrow$ [A-Z]$\backslash$w$\backslash$w
+		\end{itemize}
+		\item Repetitions: a\{3\} = match the character a 3 times, .\{2,6\} = between 2 and 6 of any character. 
+		\begin{itemize}
+			\item Match ONLY the first two words: \texttt{wazzzzzzup, wazzup, wazup} $\Rightarrow$ waz\{2,\}up
+		\end{itemize}
+			\item \emph{Kleene} star represents either 0 or more or 1 or more of the character that it follows: $\backslash$d$*=$any number of digits, $\backslash$d+ = at least one digit.
+			\begin{itemize}
+				\item Match the first three words: \texttt{"aaaabcc","aabbbbc", "aacc", "a"} \pause $\Rightarrow$ a\{2\}.$*$
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Matching characters IV
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Tricks II}
+\begin{frame}[fragile]
+\frametitle{More tricks...}
+	\begin{itemize}
+		\item Optionality: ab?c = match either ``ac'' or ''abc'' because ``b' is optional.
+		\begin{itemize}
+			\item Match the first 3 words: \texttt{1 file found?, 2 files found?, 13 files found?, No files found.} \pause $\Rightarrow$ $\backslash$d+ files? found$\backslash$?
+		\end{itemize}
+		\item White space(s): $\backslash$r,$\backslash$n,$\backslash$t,`` '' $\rightarrow$ Use $\backslash$s!
+		\item Whitespace characters are just like any other character and the special metacharacters like the star and the plus can be used as well.
+		\begin{itemize}
+			\item Match the first 3 words from: \texttt{1. abc, 2.   abc, 3.      abc, 4.abc} \pause $\Rightarrow$ $\backslash$d$\backslash$.$\backslash$s+[a-z]\{3\}
+		\end{itemize}
+		\item $\backslash$S: any non-space character
+	\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% location
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Character location}
+\subsection{Location I}
+\begin{frame}[fragile]
+\frametitle{Location in a word}
+	\begin{itemize}
+		\item \textcolor{myaqua}{Start}: $\hat{ }$
+		\begin{itemize}
+			\item Extract ``Mission'' but only from sentences that begin with that word $\Rightarrow$ $\hat{ }$Mission
+		\end{itemize}
+		\item \textcolor{myred}{End}: \$ , \texttt{word}\$
+		\item Grouping: ()
+		\begin{itemize}
+			\item Extract the file name without the extension \texttt{file\_record\_transcript.pdf} \pause $\Rightarrow$ $\hat{ }$(file$\backslash$w+)
+		\end{itemize}
+		\item Nested groups: extract multiple layers of information.
+		\begin{itemize}
+			\item Get the full date and year of \texttt{"Jan 1987", "MAy 1969", "Aug 2011"} \pause $\Rightarrow$ ($\backslash$w\{3\}$\backslash$s($\backslash$d+))
+		\end{itemize}
+		\item Conditionals: \texttt{I love (cats|dogs)}
+		\item Metacharacters: $\backslash$d, $\backslash$w, $\backslash$s, $\backslash$D, $\backslash$W, $\backslash$S
+	\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Application in Python
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Python RegExpr}
+\subsection{Overview}
+\begin{frame}[fragile]
+\frametitle{Python implementation}
+\begin{itemize}
+	\item Use \emph{raw} strings instead of regular Python strings. Raw strings begin with a special prefix (r) and signal Python not to interpret backslashes and special metacharacters in the string, allowing you to pass them through directly to the regular expression engine $\Rightarrow$ a pattern like ``$\backslash$n$\backslash$w'' will not be interpreted and can be written as r"$\backslash$n$\backslash$w" instead of "$\backslash\backslash$n$\backslash\backslash$w" as in other languages, which is much easier to read.
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Application in Python
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Python functions}
+\begin{frame}[fragile]
+\frametitle{Python functions}
+\begin{tcolorbox}
+matchObject = re.search(pattern, input\_str, flags=0)	
+\end{tcolorbox}
+\begin{tcolorbox}
+matchList = re.findall(pattern, input\_str, flags=0)	
+\end{tcolorbox}
+\begin{tcolorbox}
+matchList = re.finditer(pattern, input\_str, flags=0)	
+\end{tcolorbox}
+\begin{tcolorbox}
+replacedString = re.sub(pattern, replacement\_pattern, input\_str, count, flags=0)
+\end{tcolorbox}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

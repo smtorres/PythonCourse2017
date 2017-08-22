@@ -3,7 +3,7 @@
 #Tuples are immutable
 
 my_tuple=(1,'b',3,'d',5,'b')
-
+my_tuple[1] = {'b':2}
 my_tuple[0] #Gives the element with index number 0
 my_tuple.index('b') #Gives the index of 'b' - only the first occurence!
 my_tuple.count('b') #Gives the number of times 'b' occurs
